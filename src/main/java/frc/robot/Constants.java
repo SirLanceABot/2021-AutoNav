@@ -44,7 +44,7 @@ public final class Constants
     public static final double METERS_PER_MOTOR_ROTATION = WHEEL_CIRCUMFERENCE_IN_METERS / GEAR_RATIO_IN_MOTOR_ROT_PER_WHEEL_ROT;
     // public static final double ENCODER_METER_PER_TICK = ENCODER_METER_PER_REV / 4096.0;
 
-    public static final double COMP_BOT_WHEEL_CIRCUMFERENCE_IN_METERS = 6.25 * Math.PI * 2.54 / 100.0;
+    public static final double COMP_BOT_WHEEL_CIRCUMFERENCE_IN_METERS = 6.20 * Math.PI * 2.54 / 100.0; // original wheel diameter was 6.25
     public static final double COMP_BOT_MAIN_GEAR_RATIO = (60.0 / 12.0) * (36.0 / 20.0);
     public static final double COMP_BOT_HIGH_GEAR_RATIO = COMP_BOT_MAIN_GEAR_RATIO * (34.0 / 32.0);
     public static final double COMP_BOT_LOW_GEAR_RATIO = COMP_BOT_MAIN_GEAR_RATIO * (44.0 / 22.0);

@@ -11,6 +11,7 @@ public class Disabled
     private static final String fullClassName = MethodHandles.lookup().lookupClass().getCanonicalName();
 
     private static final DrivetrainFalconFX drivetrain = Robot.DRIVETRAIN;
+    // private static final DrivetrainSparkMax drivetrain = Robot.DRIVETRAIN;
     
     // *** STATIC INITIALIZATION BLOCK ****************************************
     // This block of code is run first when the class is loaded

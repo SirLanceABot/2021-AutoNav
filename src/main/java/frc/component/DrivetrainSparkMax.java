@@ -192,6 +192,11 @@ public class DrivetrainSparkMax extends DifferentialDrive
         return kinematics;
     }
 
+    public double getAngle()
+    {
+        return navX.getAngle();
+    }
+
     public SimpleMotorFeedforward getMotorFeedforward()
     {
         return feedforward;

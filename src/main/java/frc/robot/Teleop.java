@@ -13,6 +13,7 @@ public class Teleop
     private static final String fullClassName = MethodHandles.lookup().lookupClass().getCanonicalName();
 
     private static final DrivetrainFalconFX drivetrain = Robot.DRIVETRAIN;
+    // private static final DrivetrainSparkMax drivetrain = Robot.DRIVETRAIN;
     private static final XboxController driverController = Robot.DRIVER_CONTROLLER;
     
     
@@ -48,6 +49,7 @@ public class Teleop
     
     public void periodic()
     {
+        System.out.println("Angle = " + drivetrain.getAngle());
         // Get the x speed. We are inverting this because Xbox controllers return
         // negative values when we push forward.
         double speed = driverController.getY(GenericHID.Hand.kLeft);

@@ -17,11 +17,12 @@ public class Autonomous
     private static final String fullClassName = MethodHandles.lookup().lookupClass().getCanonicalName();
 
     private static final DrivetrainFalconFX drivetrain = Robot.DRIVETRAIN;
+    // private static final DrivetrainSparkMax drivetrain = Robot.DRIVETRAIN;
 
     // Create the trajectory to follow in autonomous. It is best to initialize
     // trajectories here to avoid wasting time in autonomous.
     private static final TrajectoryLoader trajectoryLoader = new TrajectoryLoader();
-    private static final ArrayList<Trajectory> trajectory = trajectoryLoader.getTrajectory(TrajectoryLoader.PathOption.Bounce);
+    private static final ArrayList<Trajectory> trajectory = trajectoryLoader.getTrajectory(TrajectoryLoader.PathOption.Slalom);
 
     // The Ramsete Controller to follow the trajectory.
     private static final RamseteController ramseteController = new RamseteController(2.0, 0.7);
@@ -111,7 +112,7 @@ public class Autonomous
                 // Get the reference chassis speeds from the Ramsete controller.
                 ChassisSpeeds refChassisSpeeds = ramseteController.calculate(drivetrain.getPose(), desiredPose);
                 // System.out.println("Cur Pose = " + drivetrain.getPose() + "  Desired Pose = " + desiredPose);
-                System.out.print("Time = " + timer.get());
+                System.out.println("Time = " + timer.get() + "\tAngle = " + drivetrain.getAngle());
                 // Set the linear and angular speeds.
                 drivetrain.drive(refChassisSpeeds.vxMetersPerSecond, refChassisSpeeds.omegaRadiansPerSecond);
             } 

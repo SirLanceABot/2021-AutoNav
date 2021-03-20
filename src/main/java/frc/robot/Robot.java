@@ -18,6 +18,7 @@ public class Robot extends TimedRobot
 
     // PUBLIC ROBOT COMPONENTS -- These must be final (constant)
     public static final DrivetrainFalconFX DRIVETRAIN = new DrivetrainFalconFX();
+    // public static final DrivetrainSparkMax DRIVETRAIN = new DrivetrainSparkMax();
     public static final XboxController DRIVER_CONTROLLER = new XboxController(0);
 
 

@@ -25,7 +25,8 @@ public class TrajectoryLoader
     
     public enum PathOption {BarrelRacing, Bounce, Slalom, Manual};
     
-    private static final DrivetrainFalconFX drivetrain = Robot.DRIVETRAIN;;
+    private static final DrivetrainFalconFX drivetrain = Robot.DRIVETRAIN;
+    // private static final DrivetrainSparkMax drivetrain = Robot.DRIVETRAIN;
     private static final ArrayList<Trajectory> trajectory = new ArrayList<Trajectory>();
     private static final DifferentialDriveVoltageConstraint voltageConstraint = 
             new DifferentialDriveVoltageConstraint(drivetrain.getMotorFeedforward(), drivetrain.getKinematics(), 10.0);
@@ -71,11 +72,18 @@ public class TrajectoryLoader
         trajectory.clear();
         trajectory.add(
             TrajectoryGenerator.generateTrajectory(
-                new Pose2d(0, 0, Rotation2d.fromDegrees(0)),
-                List.of(new Translation2d(1, 0), new Translation2d(2, 0)),
-                new Pose2d(3, 0, Rotation2d.fromDegrees(0)),
+                List.of(new Pose2d(0, 0, Rotation2d.fromDegrees(0)),
+                new Pose2d(4, 0, Rotation2d.fromDegrees(0))),
                 trajectoryConfig
             )
+            /*
+            TrajectoryGenerator.generateTrajectory(
+                new Pose2d(0, 0, Rotation2d.fromDegrees(0)),
+                List.of(new Translation2d(1, 0), new Translation2d(2, 0)),
+                new Pose2d(4, 0, Rotation2d.fromDegrees(0)),
+                trajectoryConfig
+            )
+            */
         );
 
         System.out.println(trajectory.get(0).getStates());
