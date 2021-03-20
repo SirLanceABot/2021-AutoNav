@@ -50,32 +50,27 @@ public class Teleop
     {
         // Get the x speed. We are inverting this because Xbox controllers return
         // negative values when we push forward.
-        double leftY = driverController.getY(GenericHID.Hand.kLeft);
-        if(Math.abs(leftY) < 0.15)
-        leftY = 0.0;
+        double speed = driverController.getY(GenericHID.Hand.kLeft);
+        if(Math.abs(speed) < 0.15)
+            speed = 0.0;
         // final double xSpeed = -m_speedLimiter.calculate(y) * Drivetrain.kMaxSpeed;
-        final double xSpeed = -leftY * Constants.kMaxSpeed;
+        // final double speed = -leftY * Constants.kMaxSpeed;
 
         // Get the rate of angular rotation. We are inverting this because we want a
         // positive value when we pull to the left (remember, CCW is positive in
         // mathematics). Xbox controllers return positive values when you pull to
         // the right by default.
-        double rightX = driverController.getX(GenericHID.Hand.kRight);
-        double rightY = driverController.getY(GenericHID.Hand.kRight);
-        double joystickDirection = Math.atan2(rightY, rightX) * 180.0 / Math.PI;
-        double robotDirection = drivetrain.getDirection();
-
-        if(Math.abs(rightX) < 0.15)
-            rightX = 0.0;
-
-        if(Math.abs(rightY) < 0.15)
-            rightY = 0.0;
+        // double rightX = driverController.getX(GenericHID.Hand.kRight);
+        // double rightY = driverController.getY(GenericHID.Hand.kRight);
+        // double joystickDirection = Math.atan2(rightY, rightX) * 180.0 / Math.PI;
+        // double robotDirection = drivetrain.getDirection();
             
         // final double rot = -m_rotLimiter.calculate(x) * Drivetrain.kMaxAngularSpeed;
-        final double rot = rightX * Constants.kMaxAngularSpeed;
+        double rot = driverController.getX(GenericHID.Hand.kRight);
+        if(Math.abs(rot) < 0.15)
+            rot = 0.0;
 
-
-        drivetrain.arcadeDrive(xSpeed / 2.0, rot / 2.0);
+        drivetrain.arcadeDrive(speed, rot);
 
         // System.out.println(drivetrain);
     }
