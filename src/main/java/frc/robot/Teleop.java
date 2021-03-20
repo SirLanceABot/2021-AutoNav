@@ -50,7 +50,7 @@ public class Teleop
     {
         // Get the x speed. We are inverting this because Xbox controllers return
         // negative values when we push forward.
-        double speed = -driverController.getY(GenericHID.Hand.kLeft);
+        double speed = driverController.getY(GenericHID.Hand.kLeft);
         if(Math.abs(speed) < 0.15)
             speed = 0.0;
         // final double xSpeed = -m_speedLimiter.calculate(y) * Drivetrain.kMaxSpeed;
