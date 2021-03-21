@@ -6,7 +6,7 @@ public final class Constants
 {
     public static final double kMaxSpeed = 3.0; // meters per second
     public static final double kMaxAngularSpeed = 2 * Math.PI; // one rotation per second
-    public static final double kTrackWidth = 0.7112; // meters outside wheel to outside wheel
+    public static final double kTrackWidth = 0.7126; // meters outside wheel to outside wheel
     // private static final double kWheelRadius = 0.0508; // meters
     // private static final int kEncoderResolution = 4096;
 
@@ -50,6 +50,14 @@ public final class Constants
     public static final double COMP_BOT_LOW_GEAR_RATIO = COMP_BOT_MAIN_GEAR_RATIO * (44.0 / 22.0);
     public static final double COMP_BOT_HIGH_GEAR_METERS_PER_MOTOR_ROTATION = COMP_BOT_WHEEL_CIRCUMFERENCE_IN_METERS / COMP_BOT_HIGH_GEAR_RATIO;
     public static final double COMP_BOT_LOW_GEAR_METERS_PER_MOTOR_ROTATION = COMP_BOT_WHEEL_CIRCUMFERENCE_IN_METERS / COMP_BOT_LOW_GEAR_RATIO;
+
+    public static final double COMP_BOT_kP = 4.0;  //6.0
+    public static final double COMP_BOT_kI = 0.0;
+    public static final double COMP_BOT_kD = 0.0;
+    public static final double COMP_BOT_FF_kS = 2.0;
+    public static final double COMP_BOT_FF_kV = 5.0 * 0.85;
+    public static final double COMP_BOT_FF_kA = 5.0;
+    public static final double COMP_BOT_kTrackWidth = 0.7126;
 
     public static final int NEO_MOTOR_STALL_CURRENT = 150;
     public static final double NEO_MOTOR_FREE_CURRENT = 1.8;

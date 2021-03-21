@@ -29,9 +29,9 @@ public class TrajectoryLoader
     // private static final DrivetrainSparkMax drivetrain = Robot.DRIVETRAIN;
     private static final ArrayList<Trajectory> trajectory = new ArrayList<Trajectory>();
     private static final DifferentialDriveVoltageConstraint voltageConstraint = 
-            new DifferentialDriveVoltageConstraint(drivetrain.getMotorFeedforward(), drivetrain.getKinematics(), 10.0);
+            new DifferentialDriveVoltageConstraint(drivetrain.getMotorFeedforward(), drivetrain.getKinematics(), 12.0);
     private static final TrajectoryConfig trajectoryConfig =
-            new TrajectoryConfig(2.0, 1.0).setKinematics(drivetrain.getKinematics()).addConstraint(voltageConstraint);
+            new TrajectoryConfig(3.5, 0.29).setKinematics(drivetrain.getKinematics()).addConstraint(voltageConstraint);
 
 
     // *** STATIC INITIALIZATION BLOCK ****************************************

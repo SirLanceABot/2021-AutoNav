@@ -53,19 +53,19 @@ public class DrivetrainFalconFX extends DifferentialDrive
 
     // private static final CANEncoder leftEncoder  = leftLeader.getEncoder();
     // private static final CANEncoder rightEncoder = rightLeader.getEncoder();
-    private static final PIDController leftPIDController = new PIDController(4, 0, 0);
-    private static final PIDController rightPIDController = new PIDController(4, 0, 0);
+    private static final PIDController leftPIDController = new PIDController(Constants.COMP_BOT_kP, Constants.COMP_BOT_kI, Constants.COMP_BOT_kD);
+    private static final PIDController rightPIDController = new PIDController(Constants.COMP_BOT_kP, Constants.COMP_BOT_kI, Constants.COMP_BOT_kD);
 
     // private static final SupplyCurrentLimitConfiguration supplyCurrentLimitConfig = new SupplyCurrentLimitConfiguration(true, 40, 60, 0.5);
     // private static final StatorCurrentLimitConfiguration statorCurrentLimitConfig = new StatorCurrentLimitConfiguration(true, 40, 60, 0.5);
 
     // private static DifferentialDrive drivetrain = null;
-    private static final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.kTrackWidth);
+    private static final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.COMP_BOT_kTrackWidth);
     private static final DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(navX.getRotation2d());
 
     // Gains are for example purposes only - must be determined for your own robot!
     // private static final SimpleMotorFeedforward m_feedforward = new SimpleMotorFeedforward(1, 3);
-    private static final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(0.22, 4, 0.2);    
+    private static final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.COMP_BOT_FF_kS, Constants.COMP_BOT_FF_kV, Constants.COMP_BOT_FF_kA);    
 
 
     // *** STATIC INITIALIZATION BLOCK ****************************************
@@ -155,8 +155,8 @@ public class DrivetrainFalconFX extends DifferentialDrive
         
         //current limits
         // motor.configOpenloopRamp(0.1);
-        motor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 40, 60, 0.5), 10);
-        motor.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, 40, 60, 0.5), 10);
+        // motor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 40, 60, 0.5), 10);
+        // motor.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, 40, 60, 0.5), 10);
     }
 
     public double getVelocity(WPI_TalonFX motor)
