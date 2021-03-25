@@ -22,7 +22,7 @@ public class Autonomous
     // Create the trajectory to follow in autonomous. It is best to initialize
     // trajectories here to avoid wasting time in autonomous.
     private static final TrajectoryLoader trajectoryLoader = new TrajectoryLoader();
-    private static final ArrayList<Trajectory> trajectory = trajectoryLoader.getTrajectory(TrajectoryLoader.PathOption.Slalom);
+    private static final ArrayList<Trajectory> trajectory = trajectoryLoader.getTrajectory(TrajectoryLoader.PathOption.BarrelRacing);
 
     // The Ramsete Controller to follow the trajectory.
     private static final RamseteController ramseteController = new RamseteController(2.0, 0.7);

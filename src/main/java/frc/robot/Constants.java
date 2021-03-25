@@ -4,7 +4,7 @@ import java.lang.invoke.MethodHandles;
 
 public final class Constants
 {
-    public static final double kMaxSpeed = 3.0; // meters per second
+    public static final double kMaxSpeed = 3; // meters per second
     public static final double kMaxAngularSpeed = 2 * Math.PI; // one rotation per second
     public static final double kTrackWidth = 0.7126; // meters outside wheel to outside wheel
     // private static final double kWheelRadius = 0.0508; // meters
