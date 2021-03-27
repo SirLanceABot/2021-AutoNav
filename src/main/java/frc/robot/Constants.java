@@ -51,12 +51,16 @@ public final class Constants
     public static final double COMP_BOT_HIGH_GEAR_METERS_PER_MOTOR_ROTATION = COMP_BOT_WHEEL_CIRCUMFERENCE_IN_METERS / COMP_BOT_HIGH_GEAR_RATIO;
     public static final double COMP_BOT_LOW_GEAR_METERS_PER_MOTOR_ROTATION = COMP_BOT_WHEEL_CIRCUMFERENCE_IN_METERS / COMP_BOT_LOW_GEAR_RATIO;
 
-    public static final double COMP_BOT_kP = 4.0;  //6.0
+    public static final double COMP_BOT_MAX_VEL = 2.5;
+    public static final double COMP_BOT_MAX_ACC = 1.6; // was 10
+    public static final double COMP_BOT_MAX_BATTERY_VOLTAGE = 12.0;
+    public static final double COMP_BOT_FACTOR = 0.75;
+    public static final double COMP_BOT_kP = 2.0;
     public static final double COMP_BOT_kI = 0.0;
     public static final double COMP_BOT_kD = 0.0;
-    public static final double COMP_BOT_FF_kS = 2.0;
-    public static final double COMP_BOT_FF_kV = 5.0 * 0.85;
-    public static final double COMP_BOT_FF_kA = 5.0;
+    public static final double COMP_BOT_FF_kS = 3.0;
+    public static final double COMP_BOT_FF_kV = (COMP_BOT_MAX_BATTERY_VOLTAGE - COMP_BOT_FF_kS) / COMP_BOT_MAX_VEL;
+    public static final double COMP_BOT_FF_kA = 0.8;
     public static final double COMP_BOT_kTrackWidth = 0.7126;
 
     public static final int NEO_MOTOR_STALL_CURRENT = 150;

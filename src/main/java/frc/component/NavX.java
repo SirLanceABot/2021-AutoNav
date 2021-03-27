@@ -46,7 +46,7 @@ public class NavX /*extends AHRS*/
         System.out.println(Constants.CONSTRUCTOR_STARTING + fullClassName);
         // Add your constructor code here
         try{
-            ahrs = new AHRS(I2C.Port.kOnboard);
+            ahrs = new AHRS(I2C.Port.kOnboard, (byte) 100);
         } catch (RuntimeException ex )
         {
            DriverStation.reportError("Error instantiating the Navx: " + ex.getMessage(), true);

@@ -65,7 +65,10 @@ public class DrivetrainFalconFX extends DifferentialDrive
 
     // Gains are for example purposes only - must be determined for your own robot!
     // private static final SimpleMotorFeedforward m_feedforward = new SimpleMotorFeedforward(1, 3);
-    private static final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.COMP_BOT_FF_kS, Constants.COMP_BOT_FF_kV, Constants.COMP_BOT_FF_kA);    
+    private static final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(
+        Constants.COMP_BOT_FF_kS, 
+        Constants.COMP_BOT_FACTOR * Constants.COMP_BOT_FF_kV, 
+        Constants.COMP_BOT_FACTOR * Constants.COMP_BOT_FF_kA);    
 
 
     // *** STATIC INITIALIZATION BLOCK ****************************************
@@ -165,6 +168,12 @@ public class DrivetrainFalconFX extends DifferentialDrive
         return vel;
     }
 
+    public double[] getVelocity()
+    {
+        double[] vel = {getVelocity(leftLeader), getVelocity(rightLeader)};
+        return vel;
+    }
+
     public double getPosition(WPI_TalonFX motor)
     {
         double selectPos = motor.getSelectedSensorPosition();
@@ -179,10 +188,10 @@ public class DrivetrainFalconFX extends DifferentialDrive
      *
      * @param speeds The desired wheel speeds.
      */
-    public void setSpeeds(DifferentialDriveWheelSpeeds speeds)
+    private void setSpeeds(DifferentialDriveWheelSpeeds speeds, double acceleration)
     {
-        final double leftFeedforward = feedforward.calculate(speeds.leftMetersPerSecond, 0.0);
-        final double rightFeedforward = feedforward.calculate(speeds.rightMetersPerSecond, 0.0);
+        final double leftFeedforward = feedforward.calculate(speeds.leftMetersPerSecond, acceleration);
+        final double rightFeedforward = feedforward.calculate(speeds.rightMetersPerSecond, acceleration);
 
         // final double leftOutput = leftPIDController.calculate(leftEncoder.getVelocity(), speeds.leftMetersPerSecond);
         // final double rightOutput = rightPIDController.calculate(rightEncoder.getVelocity(), speeds.rightMetersPerSecond);
@@ -197,6 +206,10 @@ public class DrivetrainFalconFX extends DifferentialDrive
         // rightLeader.setVoltage(rightOutput + rightFeedforward);
     }
 
+    // public void setSpeeds(DifferentialDriveWheelSpeeds speeds)
+    // {
+    //     setSpeeds(speeds, 0.0);
+    // }
     /**
      * Drives the robot with the given linear velocity and angular velocity.
      *
@@ -204,10 +217,15 @@ public class DrivetrainFalconFX extends DifferentialDrive
      * @param rot Angular velocity in rad/s.
      */
     @SuppressWarnings("ParameterName")
-    public void drive(double xSpeed, double rot)
+    public void drive(double xSpeed, double rot, double acceleration)
     {
         final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(new ChassisSpeeds(xSpeed, 0.0, rot));
-        setSpeeds(wheelSpeeds);
+        setSpeeds(wheelSpeeds, acceleration);
+    }
+
+    public void drive(double xSpeed, double rot)
+    {
+        drive(xSpeed, rot, 0.0);
     }
 
     public void stopMotor()

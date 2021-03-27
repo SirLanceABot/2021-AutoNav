@@ -7,7 +7,7 @@ package frc.robot;
 import java.lang.invoke.MethodHandles;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
+// import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.component.DrivetrainFalconFX;
 // import frc.component.DrivetrainSparkMax;
@@ -27,7 +27,7 @@ public class Robot extends TimedRobot
     private static final Teleop teleop = new Teleop();
     private static final Test test = new Test();
     private static final Disabled disabled = new Disabled();
-    private static Timer timer = new Timer();
+    // private static Timer timer = new Timer();
 
     // *** STATIC INITIALIZATION BLOCK ****************************************
     // This block of code is run first when the class is loaded
@@ -85,8 +85,8 @@ public class Robot extends TimedRobot
     @Override
     public void autonomousInit() 
     {
-        timer.reset();
-        timer.start();
+        // timer.reset();
+        // timer.start();
         robotState = RobotState.kAutonomous;
         autonomous.init();
     }
@@ -126,8 +126,8 @@ public class Robot extends TimedRobot
     @Override
     public void disabledInit()
     {
-        timer.stop();
-        System.out.println("Official time: " + timer.get());
+        // timer.stop();
+        // System.out.println("Official time: " + timer.get());
         if (robotState == RobotState.kStartup)
         {
             robotState = RobotState.kDisabledBeforeGame;

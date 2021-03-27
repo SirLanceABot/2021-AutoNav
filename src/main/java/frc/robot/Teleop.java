@@ -4,6 +4,7 @@ import java.lang.invoke.MethodHandles;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import frc.component.DrivetrainFalconFX;
 // import frc.component.DrivetrainSparkMax;
 
@@ -15,6 +16,8 @@ public class Teleop
     private static final DrivetrainFalconFX drivetrain = Robot.DRIVETRAIN;
     // private static final DrivetrainSparkMax drivetrain = Robot.DRIVETRAIN;
     private static final XboxController driverController = Robot.DRIVER_CONTROLLER;
+    private static final PowerDistributionPanel pdp = new PowerDistributionPanel();
+    private static double[] previousVel = {0,0};
     
     
     // *** STATIC INITIALIZATION BLOCK ****************************************
@@ -49,14 +52,25 @@ public class Teleop
     
     public void periodic()
     {
-        System.out.println("Angle = " + drivetrain.getAngle());
-        // Get the x speed. We are inverting this because Xbox controllers return
-        // negative values when we push forward.
+        double[] vel = drivetrain.getVelocity();
         double speed = -driverController.getY(GenericHID.Hand.kLeft);
         if(Math.abs(speed) < 0.15)
-            speed = 0.0;
-        // final double xSpeed = -m_speedLimiter.calculate(y) * Drivetrain.kMaxSpeed;
-        // final double speed = -leftY * Constants.kMaxSpeed;
+            speed = 0.0;        
+        
+        System.out.printf("Volts=%5.2f", speed * pdp.getVoltage());
+        System.out.printf("  Angle=%5.2f", drivetrain.getAngle());
+        System.out.printf("  Lvel=%5.2f", vel[0]);
+        System.out.printf("  Rvel=%5.2f", vel[1]);
+        System.out.printf("  Lacc=%5.2f", (vel[0]-previousVel[0]) * 50.0);
+        System.out.printf("  Racc=%5.2f", (vel[1]-previousVel[1]) * 50.0);
+        System.out.printf("  Racc=%5.2f\n", (vel[1]-previousVel[1]) * 50.0);
+
+        previousVel[0] = vel[0];
+        previousVel[1] = vel[1];
+
+
+
+
 
         // Get the rate of angular rotation. We are inverting this because we want a
         // positive value when we pull to the left (remember, CCW is positive in

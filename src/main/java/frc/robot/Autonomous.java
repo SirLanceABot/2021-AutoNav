@@ -29,6 +29,7 @@ public class Autonomous
 
     // The timer to use during the autonomous period.
     private static final Timer timer = new Timer();
+    private static final Timer officialTime = new Timer();
 
     private static int currentPath = 0;
     private static boolean newPathStarted = false;
@@ -71,7 +72,12 @@ public class Autonomous
         currentPathTotalTime = 0.0;
 
         // Initialize the timer.
+
+        officialTime.stop();
+        officialTime.reset();
+        timer.stop();
         timer.reset();
+        officialTime.start();
         timer.start();
 
         // Reset the drivetrain's odometry to the starting pose of the trajectory.
@@ -114,7 +120,17 @@ public class Autonomous
                 // System.out.println("Cur Pose = " + drivetrain.getPose() + "  Desired Pose = " + desiredPose);
                 System.out.println("Time = " + timer.get() + "\tAngle = " + drivetrain.getAngle());
                 // Set the linear and angular speeds.
-                drivetrain.drive(refChassisSpeeds.vxMetersPerSecond, refChassisSpeeds.omegaRadiansPerSecond);
+                if(officialTime.get() > 5 && drivetrain.getPose().getX() < 2)
+                {
+                    officialTime.stop();
+                    drivetrain.stopMotor();
+                    newPathStarted = true;
+                    System.out.println("NEW Official Time = " + officialTime.get());
+                }
+                else
+                {
+                    drivetrain.drive(refChassisSpeeds.vxMetersPerSecond, refChassisSpeeds.omegaRadiansPerSecond, desiredPose.accelerationMetersPerSecondSq);
+                }
             } 
             else 
             {
